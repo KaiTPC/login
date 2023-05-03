@@ -1,4 +1,7 @@
+<!--  -->
 <?php
+include_once('comm.php');
+
 session_start();
 
 $acc='admin';
