@@ -9,8 +9,8 @@
 </head>
 <body>
 
+if($_POST)
 </body>
 <?php
-
 
 
