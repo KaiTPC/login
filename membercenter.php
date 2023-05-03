@@ -9,7 +9,7 @@
 </head>
 <body>
 
-if($_POST)
+if($_POST)['acc']== 
 </body>
 <?php
 
