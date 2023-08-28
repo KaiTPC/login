@@ -1,5 +1,7 @@
-<?php
-
+<?php 
+include_once('comm.php');
+$here='front';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入</title>
+    <link rel="stylesheet" href="style.css">
     <style>
 form > div {
     border: 1px solid lightgreen;
@@ -17,13 +20,16 @@ form > div {
     padding: 20px;
     border-radius: 10px;
 }
+
 .input {
     margin: 10px;
 }
+
 .input input {
     border: 0;
     border-bottom: 1px solid gray;
 }
+
 input[type='submit'] {
     border: 0;
     background: lightskyblue;
@@ -32,32 +38,37 @@ input[type='submit'] {
     /* display: inline-block; */
     /* margin: auto; */
 }
+
 input[type='submit']:hover {
     cursor: pointer;
     background-color: deepskyblue;
     color: yellow;
 }
 
-/* 用php if-else包起來 如果登入成功 登入失敗 */
-/* 表單僅顯示在server端 沒有顯示在client端 */
-/* if else跑一次 */
-<?php
-session_start();
-if(isset($_SESSION['login'])){
-// 刪去 if else
-
-echo "登入成功!";
-echo "歡迎，";
-echo $_SESSION['login'];
-echo "<a href='logout.php'>登出</a>";
-
-}else{}
-    ?>
     </style>
 </head>
+
 <body>
+<?php include("header.php");?>
+
+<?php
+
+if(isset($_SESSION['login'])){
+    echo "歡迎，";
+    echo $_SESSION['login'];
+    echo "<a href='logout.php'>登出</a>";
+
+}else{
+?>
     <form action="check.php" method="post">
         <div>
+            <div style='color:red'>
+            <?php
+            if(isset($_SESSION['error'])){
+                echo "帳號或密碼錯誤!";
+            }
+            ?>
+            </div>
             <div class='input'>
                 <label for="">帳號:</label>
                 <input type="text" name="acc" id="acc">
@@ -71,6 +82,10 @@ echo "<a href='logout.php'>登出</a>";
             </div>
         </div>
     </form>
-    
+<?php
+}
+
+?>
 </body>
+
 </html>
